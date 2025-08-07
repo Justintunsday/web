@@ -1,0 +1,306 @@
+:root {
+    --primary-color: #2c54c9;
+    --primary-hover: #1a3bb7;
+    --text-color: #333;
+    --bg-color: #f5f5f5;
+    --card-bg: #fff;
+    --border-color: #e0e0e0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --shadow-hover: rgba(0, 0, 0, 0.15);
+    --secondary-text: #666;
+    --code-bg: #f5f5f5;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+/* 可移动的返回按钮 */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: move; /* 改变光标为移动样式 */
+    box-shadow: 0 2px 10px var(--shadow-color);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    user-select: none; /* 防止文本被选中 */
+    touch-action: none; /* 防止触摸默认行为 */
+}
+
+.back-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px var(--shadow-hover);
+}
+
+.back-button:active {
+    cursor: grabbing; /* 按下时显示抓取光标 */
+    transform: scale(1.05);
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInDown 0.6s forwards 0.2s;
+}
+
+@keyframes fadeInDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    color: var(--secondary-text);
+    opacity: 0;
+    animation: fadeIn 0.6s forwards 0.4s;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+.server-banner {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    opacity: 0;
+    transform: scale(0.95);
+    animation: fadeInScale 0.8s forwards 0.1s;
+}
+
+@keyframes fadeInScale {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 50px;
+    padding: 25px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border-color);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card:nth-child(1) { animation-delay: 0.2s; }
+.card:nth-child(2) { animation-delay: 0.4s; }
+.card:nth-child(3) { animation-delay: 0.6s; }
+.card:nth-child(4) { animation-delay: 0.8s; }
+.card:nth-child(5) { animation-delay: 1.0s; }
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px var(--shadow-hover);
+}
+
+.card-header {
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.card h2 {
+    color: var(--primary-color);
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.server-ip {
+    font-family: monospace;
+    background: var(--code-bg);
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 15px 0;
+    font-size: 1.1rem;
+    border: 1px solid var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.server-ip:hover {
+    transform: scale(1.02);
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+.join-button {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.join-button:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow-hover);
+}
+
+.join-button:active {
+    transform: translateY(0);
+}
+
+.join-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+}
+
+.join-button:focus:not(:active)::after {
+    animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(20, 20);
+        opacity: 0;
+    }
+}
+
+.simple-list {
+    padding-left: 20px;
+    list-style-type: none;
+}
+
+.simple-list li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 15px;
+    opacity: 0;
+    transform: translateX(-10px);
+    animation: fadeInRight 0.4s forwards;
+}
+
+@keyframes fadeInRight {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.simple-list li:nth-child(1) { animation-delay: 0.3s; }
+.simple-list li:nth-child(2) { animation-delay: 0.4s; }
+.simple-list li:nth-child(3) { animation-delay: 0.5s; }
+.simple-list li:nth-child(4) { animation-delay: 0.6s; }
+.simple-list li:nth-child(5) { animation-delay: 0.7s; }
+.simple-list li:nth-child(6) { animation-delay: 0.8s; }
+.simple-list li:nth-child(7) { animation-delay: 0.9s; }
+
+.simple-list li:before {
+    content: "•";
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+}
+
+.wide-card {
+    grid-column: 1 / -1;
+}
+
+/* 横屏设备样式 */
+@media (orientation: landscape) {
+    .card-container {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-flow: row dense;
+    }
+    
+    .wide-card {
+        grid-column: 1 / -1;
+    }
+}
+
+/* 移动设备竖屏样式 */
+@media (max-width: 768px) and (orientation: portrait) {
+    .card-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .page-header h1 {
+        font-size: 2rem;
+    }
+    
+    .back-button {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* 平板设备横屏样式 */
+@media (min-width: 769px) and (orientation: landscape) {
+    .card-container {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    }
+}
